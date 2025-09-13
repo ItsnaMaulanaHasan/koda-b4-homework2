@@ -1,5 +1,6 @@
 import { input } from "./lib/interfaceInput.js";
 import { cariMenu } from "./lib/menu.js";
+import { lihatKeranjang } from "./lib/keranjang.js";
 
 const menuUtama = async () => {
   let loop = true;
@@ -18,7 +19,7 @@ const menuUtama = async () => {
         await cariMenu();
         break;
       case 2:
-        console.log("keranjang");
+        await lihatKeranjang();
         break;
       case 3:
         console.log("history");
