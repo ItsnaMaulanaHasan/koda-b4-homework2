@@ -1,18 +1,27 @@
 import { input } from "./lib/interfaceInput.js";
 import { cariMenu } from "./lib/menu.js";
 import { lihatKeranjang } from "./lib/keranjang.js";
+import { showHistory } from "./lib/history.js";
+
+export let namaUser = "";
+
+const inputNama = async () => {
+  process.stdout.write("\x1Bc");
+  console.log("\n Selamat Datang di Aplikasi Pemesanan Mixue🤗\n");
+  namaUser = await input(" Masukkan nama anda: ", "nama");
+};
 
 const menuUtama = async () => {
   let loop = true;
   while (loop) {
     process.stdout.write("\x1Bc");
-    console.log("\nSelamat Datang di Aplikasi Pemesanan Mixue\n");
+    console.log(`\nHalo ${namaUser} silahkan pilih menu\n`);
     console.log("1. Cari Menu");
     console.log("2. Lihat Keranjang");
     console.log("3. Lihat History");
-    console.log("4. EXIT\n");
+    console.log("4. Keluar\n");
 
-    const inputMenu = await input("Masukkan Input: ");
+    const inputMenu = await input("Masukkan nomor menu: ");
 
     switch (inputMenu) {
       case 1:
@@ -22,10 +31,9 @@ const menuUtama = async () => {
         await lihatKeranjang();
         break;
       case 3:
-        console.log("history");
+        await showHistory();
         break;
       case 4:
-        console.log("keluar");
         loop = false;
         break;
       default:
@@ -35,4 +43,9 @@ const menuUtama = async () => {
   }
 };
 
-menuUtama();
+const main = async () => {
+  await inputNama();
+  await menuUtama();
+};
+
+main();
