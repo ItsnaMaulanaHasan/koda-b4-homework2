@@ -2,6 +2,7 @@ import { input } from "./lib/interfaceInput.js";
 import { cariMenu } from "./lib/menu.js";
 import { lihatKeranjang } from "./lib/keranjang.js";
 import { showHistory } from "./lib/history.js";
+import { keluar } from "./lib/keluar.js";
 
 export let namaUser = "";
 
@@ -34,7 +35,7 @@ const menuUtama = async () => {
         await showHistory();
         break;
       case 4:
-        loop = false;
+        loop = await keluar(loop);
         break;
       default:
         await input("\n *Input tidak sesuai yang diharapkan*");
